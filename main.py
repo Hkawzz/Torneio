@@ -6,6 +6,3 @@ import random
 bosses = adversarios()
 boss_fraco, boss_medio, boss_forte, boss_final = bosses
 jogador = usuario()
-
-batalha(jogador, boss_fraco)
-print("teste")
