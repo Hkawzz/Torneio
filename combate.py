@@ -9,7 +9,7 @@ def batalha(jogador, boss):
 
     while hp_jog > 0 and hp_boss > 0:
         #ataque jogador
-        input("Aperte qualquer tecla para atacar")
+        input("Aperte qualquer tecla para atacar: ")
         time.sleep(1)
         ataque_jogador = random.randint(5, atk_jog)
         hp_boss -= ataque_jogador
@@ -17,7 +17,8 @@ def batalha(jogador, boss):
         if hp_boss <= 0:
             print(f"Você deu {ataque_jogador} de ataque")
             print("Boss derrotado, Parabens!")
-            break
+            resultado = "jogador"
+            return resultado
         
         time.sleep(1)
         print()
@@ -30,11 +31,16 @@ def batalha(jogador, boss):
         #ataque boss
         ataque_boss = random.randint(1, atk_boss)
         hp_jog -= ataque_boss
+
         if hp_jog <= 0:
             print(f"Você recebeu {ataque_boss} de ataque")
             print("Você foi derrotado!")
-            break
+            resultado = "boss"
+            return resultado
+        
         print(f"Você recebeu {ataque_boss} de ataque")
         print(f"E ficou com {hp_jog} HP")
         print()
         print("Sua vez de atacar!")
+
+        
