@@ -12,14 +12,14 @@ def main():
     jogador = inicio(jogador)
 
     #primeiro boss
-    resultado = boss_um(jogador, boss_fraco)
+    jogador = boss_um(jogador, boss_fraco)
 
     #após escolher a direção
-    escolha = primeira_escolha(jogador, boss_medio)
+    escolha, jogador = primeira_escolha(jogador, boss_medio)
     if escolha == "vulcao":
-        escolha_vulcao(jogador, boss_forte, boss_medio)
+        escolha_vulcao(jogador, boss_forte, boss_medio, boss_forte, boss_final)
     else:
-        escolha_pantano(jogador, boss_medio, boss_fraco)
+        escolha_pantano(jogador, boss_medio, boss_fraco, boss_forte)
 
 if __name__ == "__main__":
     main()

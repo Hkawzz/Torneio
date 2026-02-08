@@ -27,11 +27,13 @@ def upgrade(dados, boss):
         if opcao == 1:
             dados['hp'] += n
             print(f"Upgrade para {dados['hp']} HP")
+            print()
             break
 
         elif opcao == 2:
             dados['atk'] += n
             print(f"Upgrade para {dados['atk']} de ataque")
+            print()
             break
 
         else:

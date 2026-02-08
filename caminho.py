@@ -46,13 +46,13 @@ def primeira_escolha(jogador, boss):
     time.sleep(1)
     print()
     print("Você deve escolher um caminho")
-    escolha = trajetoria(
+    escolha, dados = trajetoria(
         lambda: pantano(jogador, boss),
         lambda: vulcao(jogador, boss),
         "inicial"
     )
 
-    return escolha
+    return escolha, dados
 
 def pantano(jogador, boss):
     print("Você escolheu o caminho do pantano")
@@ -65,9 +65,13 @@ def pantano(jogador, boss):
     if resultado == "boss":
         print("FIM DE JOGO!")
         return
-    return "pantano"
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    dados = upgrade(jogador, boss)
+    return "pantano", dados
 
-def escolha_pantano(jogador, boss_um, boss_dois):
+def escolha_pantano(jogador, boss_um, boss_dois, ultimo_boss):
     print("Parabens, derrotou o primeiro inimigo pelo caminho do pantano")
     time.sleep(1)
     print()
@@ -76,22 +80,56 @@ def escolha_pantano(jogador, boss_um, boss_dois):
     time.sleep(1)
     print()
     trajetoria(
-        lambda: esquerda_vulcao(jogador, boss_um),
-        lambda: direita_vulcao(jogador, boss_dois),
+        lambda: esquerda_pantano(jogador, boss_um, ultimo_boss),
+        lambda: direita_pantano(jogador, boss_dois, ultimo_boss),
         fase=None
             )
 
-def esquerda_pantano(jogador, boss):
-    print(jogador)
-    print(boss)
+def esquerda_pantano(jogador, boss, ultimo_boss):
+    print("Seguindo pelo caminho escolhido")
+    print("Chegamos a mais um adversário")
+    print()
+    print("Você está chegando no final, derrote ele e continue")
+    print()
+    time.sleep(1)
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    jogador = upgrade(jogador, boss)
+    ultimo_pantano(jogador, ultimo_boss)
 
-def direita_pantano(jogador, boss):
-    print(jogador)
-    print(boss)
+def direita_pantano(jogador, boss, ultimo_boss):
+    print("Seguindo pelo caminho escolhido")
+    print("Chegamos a mais um adversário")
+    print()
+    print("Você se deu bem, pegou um boss fraco")
+    print("Mas ainda tem um caminho até o ultimo, derrote e continue")
+    print()
+    time.sleep(1)
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    jogador = upgrade(jogador, boss)
+    ultimo_pantano(jogador, ultimo_boss)
 
 def ultimo_pantano(jogador, boss):
-    primeira_escolha(jogador)
-    print(boss)
+    print("Você chegou ao ultimo adversário do pantano")
+    print("Derrote ele e volte ao caminho original")
+    time.sleep(1)
+    print()
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    print(jogador)
 
 def vulcao(jogador, boss):
     print("Você escolheu o caminho do vulcão")
@@ -104,9 +142,13 @@ def vulcao(jogador, boss):
     if resultado == "boss":
         print("FIM DE JOGO!")
         return
-    return "vulcao"
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    dados = upgrade(jogador, boss)
+    return "vulcao", dados
     
-def escolha_vulcao(jogador, boss_um, boss_dois):
+def escolha_vulcao(jogador, boss_um, boss_dois, ultimo_boss, final_boss):
     print("Parabens, derrotou o primeiro inimigo pelo caminho do vulcão")
     time.sleep(1)
     print()
@@ -115,15 +157,59 @@ def escolha_vulcao(jogador, boss_um, boss_dois):
     time.sleep(1)
     print()
     trajetoria(
-        lambda: esquerda_vulcao(jogador, boss_um),
-        lambda: direita_vulcao(jogador, boss_dois),
+        lambda: esquerda_vulcao(jogador, boss_um, final_boss),
+        lambda: direita_vulcao(jogador, boss_dois, ultimo_boss),
         fase=None
             )
 
-def esquerda_vulcao(jogador, boss):
-    print(jogador)
-    print(boss)
+def esquerda_vulcao(jogador, boss, final_boss):
+    print("Seguindo pelo caminho escolhido")
+    print("Chegamos a mais um adversário")
+    print()
+    print("E você fez uma otima escolha")
+    print("Derrote esse adversario e chegue direto ao ultimo")
+    print()
+    time.sleep(1)
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    jogador = upgrade(jogador, boss)
+    boss_final(jogador, final_boss)
 
-def direita_vulcao(jogador, boss):
-    print(jogador)
-    print(boss)
+def direita_vulcao(jogador, boss, ultimo_boss):
+    print("Seguindo pelo caminho escolhido")
+    print("Chegamos a mais um adversário")
+    print()
+    print("Você está chegando no final, derrote ele e continue")
+    print()
+    time.sleep(1)
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    time.sleep(1)
+    print()
+    print("Você tem mais um upgrade")
+    jogador = upgrade(jogador, boss)
+    ultimo_boss(jogador, ultimo_boss)
+
+def ultimo_vulcao(jogador, boss):
+    print("Você chegou ao ultimo adversário do vulcao")
+    print("Derrote ele e volte ao caminho original")
+    time.sleep(1)
+    print()
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
+    return "vulcao" 
+
+def boss_final(jogador, boss):
+    resultado = batalha(jogador, boss)
+    if resultado == "boss":
+        print("FIM DE JOGO!")
+        return
