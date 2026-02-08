@@ -11,7 +11,7 @@ def batalha(jogador, boss):
         #ataque jogador
         input("Aperte qualquer tecla para atacar: ")
         time.sleep(1)
-        ataque_jogador = random.randint(5, atk_jog)
+        ataque_jogador = random.randint(10, atk_jog)
         hp_boss -= ataque_jogador
 
         if hp_boss <= 0:

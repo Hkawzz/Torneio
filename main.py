@@ -1,5 +1,6 @@
 from entidades import usuario, adversarios
 from caminho import inicio, boss_um, primeira_escolha
+import time
 
 #recebendo dados
 bosses = adversarios()
@@ -7,10 +8,10 @@ boss_fraco, boss_medio, boss_forte, boss_final = bosses
 jogador = usuario()
 
 #inicio
-#jogador = inicio(jogador)
-print(jogador)
+jogador = inicio(jogador)
 
 #primeiro boss
-#boss_um(jogador, boss_fraco)
+resultado = boss_um(jogador, boss_fraco)
 
-primeira_escolha()
+#após escolher a direção
+jogador = primeira_escolha(jogador, boss_medio)
