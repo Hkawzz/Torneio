@@ -46,11 +46,13 @@ def primeira_escolha(jogador, boss):
     time.sleep(1)
     print()
     print("Você deve escolher um caminho")
-    trajetoria(
+    escolha = trajetoria(
         lambda: pantano(jogador, boss),
         lambda: vulcao(jogador, boss),
         "inicial"
     )
+
+    return escolha
 
 def pantano(jogador, boss):
     print("Você escolheu o caminho do pantano")
@@ -63,6 +65,33 @@ def pantano(jogador, boss):
     if resultado == "boss":
         print("FIM DE JOGO!")
         return
+    return "pantano"
+
+def escolha_pantano(jogador, boss_um, boss_dois):
+    print("Parabens, derrotou o primeiro inimigo pelo caminho do pantano")
+    time.sleep(1)
+    print()
+    print("Agora deve fazer mais uma escolha, que pode facilitar, ou atrasar")
+    print("Escolha bem...")
+    time.sleep(1)
+    print()
+    trajetoria(
+        lambda: esquerda_vulcao(jogador, boss_um),
+        lambda: direita_vulcao(jogador, boss_dois),
+        fase=None
+            )
+
+def esquerda_pantano(jogador, boss):
+    print(jogador)
+    print(boss)
+
+def direita_pantano(jogador, boss):
+    print(jogador)
+    print(boss)
+
+def ultimo_pantano(jogador, boss):
+    primeira_escolha(jogador)
+    print(boss)
 
 def vulcao(jogador, boss):
     print("Você escolheu o caminho do vulcão")
@@ -75,6 +104,26 @@ def vulcao(jogador, boss):
     if resultado == "boss":
         print("FIM DE JOGO!")
         return
+    return "vulcao"
     
-def escolha_vulcao():
+def escolha_vulcao(jogador, boss_um, boss_dois):
     print("Parabens, derrotou o primeiro inimigo pelo caminho do vulcão")
+    time.sleep(1)
+    print()
+    print("Agora deve fazer mais uma escolha, que pode facilitar, ou atrasar")
+    print("Escolha bem...")
+    time.sleep(1)
+    print()
+    trajetoria(
+        lambda: esquerda_vulcao(jogador, boss_um),
+        lambda: direita_vulcao(jogador, boss_dois),
+        fase=None
+            )
+
+def esquerda_vulcao(jogador, boss):
+    print(jogador)
+    print(boss)
+
+def direita_vulcao(jogador, boss):
+    print(jogador)
+    print(boss)
