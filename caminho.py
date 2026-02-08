@@ -1,10 +1,9 @@
 from combate import batalha
+from bonus import upgrade
+from escolhas import trajetoria
 import time
 
 def inicio(jogador):
-    dados = jogador
-    
-
     print("Bem vindo ao Jogo")
     time.sleep(1)
     nome = input("Qual o seu nome? ")
@@ -18,27 +17,7 @@ def inicio(jogador):
     time.sleep(1)
 
     print("Escolha um para receber um upgrade de +5")
-    while True:
-        print("(1) HP")
-        print("(2) Ataque")
-
-        try:
-            opcao = input("Escolha uma opção: ")
-            opcao = int(opcao)
-
-        except ValueError:
-            print("Opção Inválida!")
-            print("Tente Novamente")
-
-        if opcao == 1:
-            dados['hp'] += 5
-            print("Upgrade para 45 HP")
-            break
-
-        elif opcao == 2:
-            dados['atk'] += 5
-            print("Upgrade para 35 de ataque")
-            break
+    dados = upgrade(jogador)
 
     print()
     print("Agora podemos seguir para o primeiro BOSS")
@@ -53,5 +32,16 @@ def boss_um(jogador, boss):
     time.sleep(1)
     resultado = batalha(jogador, boss)
     if resultado == "boss":
+        print("FIM DE JOGO!")
         return
-    print("")
+
+def primeira_escolha():
+    print("Agora com o primeiro boss derrotado")
+    print("Você deve escolher um caminho")
+    trajetoria(a, b,"inicial")
+
+def a():
+    print("a")
+
+def b():
+    print("b")
