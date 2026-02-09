@@ -13,13 +13,20 @@ def main():
 
     #primeiro boss
     jogador = boss_um(jogador, boss_fraco)
+    if jogador == "boss":
+        return #acaba o jogo
 
-    #após escolher a direção
-    escolha, jogador = primeira_escolha(jogador, boss_medio)
-    if escolha == "vulcao":
-        escolha_vulcao(jogador, boss_forte, boss_medio, boss_forte, boss_final)
     else:
-        escolha_pantano(jogador, boss_medio, boss_fraco, boss_forte)
+        #após escolher a direção
+        escolha, jogador = primeira_escolha(jogador, boss_medio)
+
+        if escolha == "boss":
+            return
+        
+        elif escolha == "vulcao":
+            escolha_vulcao(jogador, boss_forte, boss_medio, boss_forte, boss_final)
+        else:
+            escolha_pantano(jogador, boss_medio, boss_fraco, boss_forte, boss_final)
 
 if __name__ == "__main__":
     main()
